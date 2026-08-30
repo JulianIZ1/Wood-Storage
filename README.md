@@ -4,9 +4,9 @@ by the front door. Just walk over to the wood pile and open it like you would
 a normal chest. Wood pile will only accept normal wood and hardwood.
 
 Storage gets larger as you upgrade the house:
-Base Level - 1 storage slot
-Level 1 Upgrade - 3 storage slots
-Level 2 Upgrade - 9 storage slots
+- Base Level - 1 storage slot
+- Level 1 Upgrade - 3 storage slots
+- Level 2 Upgrade - 9 storage slots
 
 ## Requirements
 - [SMAPI](https://smapi.io/) 4.0.0 or later
