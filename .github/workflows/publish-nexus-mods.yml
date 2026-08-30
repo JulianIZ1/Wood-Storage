@@ -1,0 +1,45 @@
+name: Publish to Nexus Mods
+# Triggers when you push a version tag, e.g. `git tag v1.0.1 && git push origin v1.0.1`
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Read mod version from manifest.json
+        id: manifest
+        run: |
+          VERSION=$(jq -r '.Version' manifest.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      # Stages everything into a "WoodStorage" folder so the zip matches
+      # how the mod gets extracted into Stardew Valley/Mods/
+      - name: Stage mod folder
+        run: |
+          mkdir -p staging/WoodStorage
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='staging' \
+            ./ staging/WoodStorage/
+      - name: Zip mod
+        run: |
+          cd staging
+          zip -r "../WoodStorage-${{ steps.manifest.outputs.version }}.zip" WoodStorage
+      - name: Upload to Nexus Mods
+        uses: Nexus-Mods/upload-action@v1.0.0-beta.9
+        with:
+          api_key: ${{ secrets.NEXUSMODS_API_KEY }}
+          file_id: "7886175"                     # <-- replace with your real file_id
+          filename: WoodStorage-${{ steps.manifest.outputs.version }}.zip
+          version: ${{ steps.manifest.outputs.version }}
+          display_name: Wood Storage v${{ steps.manifest.outputs.version }}
+          category: main                        # main | old | optional | miscellaneous
+          archive_existing_version: true        # archives the previous file version
+          update_mod_version: true               # also bumps the mod page's listed version
+          # Optional changelog posting (requires mod_id):
+          # mod_id: "654321"
+          # changelog: "See release notes for details."
