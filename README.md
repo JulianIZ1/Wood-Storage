@@ -16,4 +16,7 @@ Level 2 Upgrade - 9 storage slots
 4. Launch the game through SMAPI.
 
 ## Compatibility
-Because the mod hooks into the existing wood pile object next to the farmhouse, it should work alongside most other mods. As always, back up your save before installing new mods for the first time.
+Mod should work regardless of what mods are installed. Open an issue if it doesn't work with a mod that I am overlooking.
+
+## AI Usage
+AI was used in development of this mod.
