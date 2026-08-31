@@ -1,0 +1,10 @@
+{
+  "Name": "Wood Storage",
+  "Author": "JulianIZ",
+  "Version": "1.0.2",
+  "Description": "Makes the wood pile on the farmers house a storage chest for wood",
+  "UniqueID": "JulianIZ.WoodStorage",
+  "EntryDll": "WoodStorage.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": []
+}
