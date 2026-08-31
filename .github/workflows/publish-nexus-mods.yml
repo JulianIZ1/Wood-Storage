@@ -28,7 +28,7 @@ jobs:
             --exclude='obj' \
             ./ staging/WoodStorage/
           # Flatten the built DLL into the staged folder root, stripping the bin/debug/net6.0 path
-          cp bin/debug/net6.0/WoodStorage.dll staging/WoodStorage/WoodStorage.dll
+          cp bin/Debug/net6.0/WoodStorage.dll staging/WoodStorage/WoodStorage.dll
       - name: Zip mod
         run: |
           cd staging
